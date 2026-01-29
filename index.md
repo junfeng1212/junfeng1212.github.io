@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
- Last year, I received my Master'degree in Applied Statistics from Shanghai University of International Business and Economics (SUIBE), advised by [Riquan Zhang](https://openreview.net/profile?id=~Riquan_Zhang2).
+ Rcently, I received my Master'degree in Applied Statistics from Shanghai University of International Business and Economics (SUIBE), advised by [Riquan Zhang](https://openreview.net/profile?id=~Riquan_Zhang2).
 
  I am currently focusing on LLM unlearning and alignment, undertaking to explore reliable and trustworthy AI. Please feel free to contact me if you would like to have a nice talk with me!
 
