@@ -10,7 +10,7 @@ layout: homepage
 
 ## News
 
-- **[Jan. 2026]** My first-authored paper on LLM unlearning was accepted to ICLR 2026.
+- **[Jan. 2026]** 🎉🎉🎉My first-authored paper on LLM unlearning was accepted to **ICLR 2026**.
 - **[June 2025]** I graduated from SUIBE and received an offer for PhD studies at AAII, UTS.
 - **[June 2025]** I was awarded the Outstanding Graduate of Shanghai (Top 1%).
 - **[Mar. 2025]** I was awarded the First-class Academic Scholarship (Top 10%) at SUIBE.
