@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junfeng Liao's Homepage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --accent-dark: #1e40af;
+    --bg: #fafbfe;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.07);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,.1);
+    --max-w: 960px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  section, header, .pub-category { scroll-margin-top: 64px; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 56px;
+  }
+  nav .logo {
+    font-weight: 700; font-size: 17px; color: var(--text);
+    text-decoration: none; letter-spacing: -0.3px;
+  }
+  nav .links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  nav .links a {
+    font-size: 13px; font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 10px; border-radius: 8px;
+    transition: all .2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  nav .links a:hover { color: var(--accent); background: var(--accent-light); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: var(--max-w); margin: 0 auto;
+    padding: 56px 24px 40px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .avatar {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light), #c7d2fe);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px; color: var(--accent);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-info .title {
+    font-size: 16px; color: var(--accent); font-weight: 600; margin-bottom: 4px;
+  }
+  .hero-info .affiliation {
+    font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.6;
+  }
+  .hero-info .affiliation a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .hero-info .affiliation a:hover { text-decoration: underline; }
+  .hero-info h1 {
+    font-size: 34px; font-weight: 700; letter-spacing: -0.6px;
+    margin-bottom: 6px;
+  }
+  .hero-links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .hero-links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--surface);
+    transition: all .2s;
+  }
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .hero-links a svg { width: 16px; height: 16px; }
+  .bio {
+    font-size: 14.5px; color: var(--text-secondary); line-height: 1.75;
+  }
+  .bio a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .bio a:hover { text-decoration: underline; }
+
+  .interests-tag {
+    display: inline-block;
+    background: var(--accent-light); color: var(--accent-dark);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 20px;
+    margin-top: 14px;
+  }
+
+  /* ── NEWS ── */
+  .news-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+  }
+  .news-scroll::-webkit-scrollbar { width: 4px; }
+  .news-scroll::-webkit-scrollbar-track { background: transparent; }
+  .news-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .news-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  .news-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    transition: box-shadow .2s;
+    flex-shrink: 0;
+  }
+  .news-item:hover { box-shadow: var(--shadow-md); }
+  .news-date {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .news-text {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .news-text a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .news-text a:hover { text-decoration: underline; }
+  .news-text em { font-style: italic; color: var(--text); }
+
+  /* ── SECTIONS ── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+  section { margin-bottom: 48px; }
+
+  .section-title {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.3px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+
+  /* ── EXPERIENCE CARDS ── */
+  .exp-grid { display: flex; flex-direction: column; gap: 14px; }
+  .exp-card {
+    display: grid; grid-template-columns: 72px 1fr; gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: box-shadow .2s;
+  }
+  .exp-card:hover { box-shadow: var(--shadow-md); }
+  .exp-year {
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    background: var(--accent-light);
+    padding: 6px 0;
+    border-radius: 8px;
+    text-align: center;
+    height: fit-content;
+  }
+  .exp-details h3 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .exp-details p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── PUBLICATIONS ── */
+  .pub-category { margin-bottom: 28px; }
+  .pub-category-title {
+    font-size: 15px; font-weight: 600; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .pub-list { display: flex; flex-direction: column; gap: 10px; }
+  .pub-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    transition: all .2s;
+    position: relative;
+  }
+  .pub-item:hover { box-shadow: var(--shadow-md); }
+  .pub-item .pub-title {
+    font-size: 15px; font-weight: 600; line-height: 1.5;
+    margin-bottom: 5px; color: var(--text);
+  }
+  .pub-item .pub-authors {
+    font-size: 13px; color: var(--text-secondary); margin-bottom: 5px;
+  }
+  .pub-item .pub-authors strong { color: var(--text); font-weight: 600; }
+  .pub-item .pub-venue {
+    font-size: 12.5px; color: var(--accent); font-weight: 600;
+  }
+  .pub-item .pub-links {
+    margin-top: 8px; display: flex; gap: 6px;
+  }
+  .pub-item .pub-links a {
+    font-size: 11.5px; font-weight: 600;
+    padding: 3px 10px; border-radius: 6px;
+    text-decoration: none;
+    background: var(--bg); color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: all .2s;
+  }
+  .pub-item .pub-links a:hover {
+    background: var(--accent-light); color: var(--accent); border-color: var(--accent);
+  }
+  .pub-item .pub-links a.bib-toggle { cursor: pointer; }
+  .bib-block {
+    display: none;
+    margin-top: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .bib-block.show { display: block; }
+
+  /* ── AWARDS ── */
+  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .award-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    transition: box-shadow .2s;
+  }
+  .award-item:hover { box-shadow: var(--shadow-md); }
+  .award-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light), #c7d2fe);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .award-item .award-text { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .award-item .award-year { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ── SERVICE / TEACHING ── */
+  .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .service-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .service-box:hover { box-shadow: var(--shadow-md); }
+  .service-box h3 {
+    font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--accent);
+  }
+  .service-box p, .service-box li {
+    font-size: 13.5px; color: var(--text-secondary); line-height: 1.7;
+  }
+  .service-box ul { list-style: none; }
+  .service-box ul li::before {
+    content: "·"; font-weight: 700; color: var(--accent); margin-right: 8px;
+  }
+
+  /* ── MENTORSHIP ── */
+  .mentee-list { display: flex; flex-direction: column; gap: 10px; }
+  .mentee-item {
+    display: grid; grid-template-columns: 1fr auto; gap: 12px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+  }
+  .mentee-item:hover { box-shadow: var(--shadow-md); }
+  .mentee-item .mentee-name { font-size: 14px; font-weight: 600; }
+  .mentee-item .mentee-detail { font-size: 12.5px; color: var(--text-secondary); }
+  .mentee-item .mentee-dest {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px; border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+
+  /* ── RESPONSIVE — tablet ── */
+  @media (max-width: 960px) {
+    nav .inner { padding: 0 16px; }
+    nav .logo { font-size: 15px; flex-shrink: 0; }
+    nav .links a { font-size: 12px; padding: 5px 8px; }
+  }
+
+  /* ── RESPONSIVE — mobile ── */
+  @media (max-width: 720px) {
+    nav .inner {
+      height: auto;
+      padding: 10px 16px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    nav .logo { font-size: 15px; }
+    nav .links {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 2px;
+    }
+    nav .links a { padding: 5px 8px; font-size: 12px; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-top: 36px; }
+    .avatar { width: 140px; height: 140px; }
+    .hero-links { justify-content: center; }
+    .hero-info h1 { font-size: 26px; }
+
+    /* Cards */
+    .exp-card { grid-template-columns: 56px 1fr; gap: 12px; padding: 16px; }
+    .awards-grid, .service-grid { grid-template-columns: 1fr; }
+    .mentee-item { grid-template-columns: 1fr; gap: 6px; }
+    .mentee-dest { justify-self: start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="inner">
+    <a class="logo" href="#">Welcome, My Friend!</a>
+    <div class="links">
+      <a onclick="document.getElementById('news').scrollIntoView({behavior:'smooth'})">News</a>
+      <a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Experience</a>
+      <a onclick="document.getElementById('conference').scrollIntoView({behavior:'smooth'})">Conference</a>
+      <a onclick="document.getElementById('journal').scrollIntoView({behavior:'smooth'})">Journal</a>
+      <a onclick="document.getElementById('awards').scrollIntoView({behavior:'smooth'})">Awards</a>
+      <a onclick="document.getElementById('service').scrollIntoView({behavior:'smooth'})">Service</a>
+      <a onclick="document.getElementById('presentations').scrollIntoView({behavior:'smooth'})">Presentations</a>
+      <a onclick="document.getElementById('mentorship').scrollIntoView({behavior:'smooth'})">Mentorship</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero" id="about">
+  <div class="avatar"><img src="photo.png" alt="Junfeng Liao"></div>
+  <div class="hero-info">
+    <h1>Junfeng Liao</h1>
+    <div class="title">Visting Student</div>
+    <div class="affiliation"><a href="https://mbzuai.ac.ae/" target="_blank">Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</a></div>
+    <div class="hero-links">
+      <a href="mailto:junfengliao1212@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://scholar.google.com/citations?hl=en&user=Se7SI3oAAAAJ" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l10-5 10 5-10 5Z"/><path d="M6 12v5c0 2 2.7 4 6 4s6-2 6-4v-5"/><line x1="22" y1="10" x2="22" y2="17"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://github.com/junfeng1212" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="bio">
+      Hi there! In this August, I will start my research journey as a NLP PhD student at <a href="https://mbzuai.ac.ae/" target="_blank">MBZUAI</a>, advised by Prof. <a href="https://iriscxy.github.io/" target="_blank">Xiuying Chen</a>. Now, I am a Visiting Student at <a href="https://mbzuai.ac.ae/" target="_blank">MBZUAI</a>, advised by Prof. <a href="https://iriscxy.github.io/" target="_blank">Xiuying Chen</a>. Before that, I was a Research Intern at the <a href="https://www.uts.edu.au/" target="_blank">University of Technology Sydney</a>, working with Dr. <a href="https://qizhouwang.github.io/homepage/" target="_blank">Qizhou Wang</a>, Prof. <a href="https://fang-zhen.github.io/" target="_blank">Zhen Fang</a>, and Prof. <a href="https://scholar.google.com.au/citations?user=L5aYWQcAAAAJ&hl=en" target="_blank">Ling Chen</a>. Last year, I obtained my Master's degree from the <a href="https://www.hkbu.edu.hk/en.html" target="_blank">Shanghai Univeristy of International Business and Economics</a>, advised by Prof. <a href="https://www.suibe.edu.cn/tsxy/2022/1031/c5782a154108/page.htm" target="_blank">Riquan Zhang</a>. <br><br>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ── NEWS ── -->
+<section id="news">
+  <div class="section-title">News</div>
+  <div class="news-scroll">
+    <div class="news-item">
+      <span class="news-date">[2026.4]</span>
+      <span class="news-text">Finally got my Japan visa after a year of waiting. Thanks everyone for the help. See you in Tokyo!</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">[2026.4]</span>
+      <span class="news-text">I will serve as an <strong>Area Chair</strong> for the Position Paper Track at NeurIPS 2026.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">[2026.3]</span>
+      <span class="news-text">I will serve as an <strong>Editorial Board Member</strong> for Machine Learning Journal.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">[2026.2]</span>
+      <span class="news-text">One paper (OOD detection) is accepted by <strong>TPAMI</strong>. Congratulations to Zhaohui!</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">[2026.1]</span>
+      <span class="news-text">Five papers (unlearning and preference optimization) are accepted by <strong>ICLR 2026</strong>. Congratulations to Kemou, Zizhuo, Fengpeng, Liang, and Junfeng.</span>
+    </div>
+    <div class="news-item">
+      <span class="news-date">[2026.1]</span>
+      <span class="news-text">We will present a tutorial on Handling Out-of-Distribution Data in the Open World at the <strong>AAAI-26 Tutorial and Lab Forum</strong>.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-title">Research Experience</div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-year">2026–</div>
+      <div class="exp-details">
+        <h3>Postdoctoral Researcher</h3>
+        <p><a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/index.html" target="_blank">Imperfect Information Learning Team</a>, <a href="https://www.riken.jp/en/research/labs/aip/" target="_blank">RIKEN AIP</a><br>Advised by Prof. <a href="http://www.ms.k.u-tokyo.ac.jp/sugi/" target="_blank">Masashi Sugiyama</a><br>Tokyo</p>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-year">2021–25</div>
+      <div class="exp-details">
+        <h3>PhD in Computer Science</h3>
+        <p><a href="https://www.comp.hkbu.edu.hk/v1/" target="_blank">Department of Computer Science</a>, <a href="https://www.hkbu.edu.hk/en.html" target="_blank">Hong Kong Baptist University</a><br>Advised by Prof. <a href="http://bhanml.github.io/" target="_blank">Bo Han</a><br>Hong Kong</p>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-year">2025</div>
+      <div class="exp-details">
+        <h3>Visiting PhD Student</h3>
+        <p><a href="https://www.cs.cornell.edu/" target="_blank">Department of Computer Science</a>, <a href="https://www.cornell.edu" target="_blank">Cornell University</a><br>Advised by Prof. <a href="https://www.cs.cornell.edu/~kilian/" target="_blank">Kilian Q. Weinberger</a><br>Remote</p>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-year">2024</div>
+      <div class="exp-details">
+        <h3>Visiting PhD Student</h3>
+        <p><a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/index.html" target="_blank">Imperfect Information Learning Team</a>, <a href="https://www.riken.jp/en/research/labs/aip/" target="_blank">RIKEN AIP</a><br>Advised by Prof. <a href="http://www.ms.k.u-tokyo.ac.jp/sugi/" target="_blank">Masashi Sugiyama</a> and Dr. <a href="https://niug1984.github.io" target="_blank">Gang Niu</a><br>Tokyo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ── -->
+<section id="publications">
+  <div class="section-title">Selected Publications</div>
+
+  <!-- Preprint -->
+  <div class="pub-category" id="preprint">
+    <div class="pub-category-title">Preprints</div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <div class="pub-title">What Is Preference Optimization Doing, How and Why?</div>
+        <div class="pub-authors">Y. Wang, <strong>Q. Wang</strong>, Z. Zhang, A. Li, G. Niu, B. Han, and M. Sugiyama</div>
+        <div class="pub-venue">Arxiv, 2025</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2512.00778" target="_blank">PDF</a> <a href="" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_yue2025what')">BibTeX</a></div>
+        <div class="bib-block" id="bib_yue2025what">@article{yue2025what,
+  title={What Is Preference Optimization Doing, How and Why?},
+  author={Wang, Yue and Wang, Qizhou and Zhang, Zizhuo and Li, Ang and Niu, Gang and Han, Bo and Sugiyama, Masashi},
+  journal={Arxiv Preprint},
+  year={2025}
+}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conference -->
+  <div class="pub-category" id="conference">
+    <div class="pub-category-title">Conference</div>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-title">LLM Unlearning with LLM Beliefs</div>
+        <div class="pub-authors">K. Li, <strong>Q. Wang</strong>, Y. Wang, F. Li, J. Liu, B. Han, and J. Zhou</div>
+        <div class="pub-venue">ICLR 2026</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2510.19422" target="_blank">PDF</a> <a href="https://github.com/locuslab/open-unlearning" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_li2026llm')">BibTeX</a></div>
+        <div class="bib-block" id="bib_li2026llm">@inproceedings{li2026llm,
+  title={LLM Unlearning with LLM Beliefs},
+  author={Li, Kemou and Wang, Qizhou and Wang, Yue and Li, Fengpeng and Liu, Jun and Han, Bo and Zhou, Jiantao},
+  booktitle={International Conference on Learning Representations},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Towards Understanding Valuable Preference Data for Large Language Model Alignment</div>
+        <div class="pub-authors">Z. Zhang, <strong>Q. Wang</strong>, S. Ye, J. Zhu, J. Yao, B. Han, and M. Sugiyama</div>
+        <div class="pub-venue">ICLR 2026</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2510.13212" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/TIF_LossDiff-IRM" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_zhang2026towards')">BibTeX</a></div>
+        <div class="bib-block" id="bib_zhang2026towards">@inproceedings{zhang2026towards,
+  title={Towards Understanding Valuable Preference Data for Large Language Model Alignment},
+  author={Zhang, Zizhuo and Wang, Qizhou and Ye, Shanshan and Zhu, Jianing and Yao, Jiangchao and Han, Bo and Sugiyama, Masashi},
+  booktitle={International Conference on Learning Representations},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">AEGIS: Adversarial Target-Guided Retention-Data-Free Robust Concept Erasure from Diffusion Models</div>
+        <div class="pub-authors">F. Li, K. Li, <strong>Q. Wang</strong>, B. Han, and J. Zhou</div>
+        <div class="pub-venue">ICLR 2026</div>
+        <div class="pub-links"><a href="https://openreview.net/forum?id=3y3hnL7KhS" target="_blank">PDF</a> <a href="https://github.com/Feng-peng-Li/AEGIS" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_li2026AEGIS')">BibTeX</a></div>
+        <div class="bib-block" id="bib_li2026AEGIS">@inproceedings{li2026AEGIS,
+  title={AEGIS: Adversarial Target–Guided Retention-Data-Free Robust Concept Erasure from Diffusion Models},
+  author={Li, Fengpeng and Li, Kemou and Wang, Qizhou and Han, Bo and Zhou, Jiantao},
+  booktitle={International Conference on Learning Representations},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">EEPO: Exploration-Enhanced Policy Optimization via Sample-Then-Forget</div>
+        <div class="pub-authors">L. Chen, X. Han, <strong>Q. Wang</strong>, B. Han, J. Bai, H. Schutze, and KF Wong</div>
+        <div class="pub-venue">ICLR 2026</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2510.05837" target="_blank">PDF</a> <a href="" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_chen2026eepo')">BibTeX</a></div>
+        <div class="bib-block" id="bib_chen2026eepo">@inproceedings{chen2026eepo,
+  title={EEPO: Exploration-Enhanced Policy Optimization via Sample-Then-Forget},
+  author={Liang Chen and Xueting Han and Qizhou Wang and Bo Han and Jing Bai and Hinrich Schutze and Kam-Fai Wong},
+  booktitle={International Conference on Learning Representations},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Explainable LLM Unlearning through Reasoning</div>
+        <div class="pub-authors">J. Liao, <strong>Q. Wang</strong>, S. Ye, X. Yu, L. Chen, and Z. Fang</div>
+        <div class="pub-venue">ICLR 2026</div>
+        <div class="pub-links"><a href="https://openreview.net/forum?id=wec4qy2XIF" target="_blank">PDF</a> <a href="https://github.com/junfeng1212/TRU-main" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_liao2026explainable')">BibTeX</a></div>
+        <div class="bib-block" id="bib_liao2026explainable">@inproceedings{liao2026explainable,
+  title={Explainable LLM Unlearning through Reasoning},
+  author={Liao, Junfeng and Wang, Qizhou and Ye, Shanshan and Yu, Xin and Chen, Ling and Fang, Zhen},
+  booktitle={International Conference on Learning Representations},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Adaptive Localization of Knowledge Negation for Continual LLM Unlearning</div>
+        <div class="pub-authors">A. Wuerkaixi, <strong>Q. Wang</strong>, S. Cui, W. Xu, B. Han, G. Niu, M. Sugiyama, and C. Zhang</div>
+        <div class="pub-venue">ICML 2025</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=tcK4PV3VN4" target="_blank">PDF</a> <a href="https://github.com/zaocan666/ALKN" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wuerkaixi2025adaptive')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wuerkaixi2025adaptive">@inproceedings{wuerkaixi2025adaptive,
+  title={Adaptive Localization of Knowledge Negation for Continual LLM Unlearning},
+  author={Wuerkaixi, Abudukelimu and Wang, Qizhou and Cui, Sen and Xu, Wutong and Han, Bo and Niu, Gang and Sugiyama, Masashi and Zhang, Changshui},
+  booktitle={International Conference on Machine Learning},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Exploring Criteria of Loss Reweighting to Enhance LLM Unlearning</div>
+        <div class="pub-authors">P. Yang, <strong>Q. Wang</strong>, Z. Huang, T. Liu, C. Zhang, and B. Han</div>
+        <div class="pub-venue">ICML 2025</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2505.11953" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/SatImp" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_yang2025exploring')">BibTeX</a></div>
+        <div class="bib-block" id="bib_yang2025exploring">@inproceedings{yang2025exploring,
+  title={Exploring Criteria of Loss Reweighting to Enhance LLM Unlearning},
+  author={Yang, Puning and Wang, Qizhou and Huang, Zhuo and Liu, Tongliang and Zhang, Chengqi and Han, Bo},
+  booktitle={International Conference on Machine Learning},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">GRU: Mitigating the Trade-off between Unlearning and Retention for Large Language Models</div>
+        <div class="pub-authors">Y. Wang, <strong>Q. Wang</strong>, F. Liu, W. Huang, Y. Du, X. Du, and B. Han</div>
+        <div class="pub-venue">ICML 2025</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2503.09117" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/GRU" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2025gru')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2025gru">@inproceedings{wang2025gru,
+  title={GRU: Mitigating the Trade-off between Unlearning and Retention for Large Language Models},
+  author={Wang, Yue and Wang, Qizhou and Liu, Feng and Huang, Wei and Du, Yali and Du, Xiaojiang and Han, Bo},
+  booktitle={International Conference on Machine Learning},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Rethinking LLM Unlearning Objectives: A Gradient Perspective and Go Beyond</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, J. Zhou, Z. Zhou, S. Shin, B. Han, and K. Q. Weinberger</div>
+        <div class="pub-venue">ICLR 2025</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=huo8MqVH6t" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/G-effect" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2025rethinking')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2025rethinking">@inproceedings{wang2025rethinking,
+  title={Rethinking LLM Unlearning Objectives: A Gradient Perspective and Go Beyond},
+  author={Qizhou Wang and Jin Peng Zhou and Zhanke Zhou and Saebyeol Shin and Bo Han and Kilian Q Weinberger},
+  booktitle={International Conference on Learning Representations},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Towards Effective Evaluations and Comparison for LLM Unlearning Methods</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, B. Han, P. Yang, J. Zhu, T. Liu, and M. Sugiyama</div>
+        <div class="pub-venue">ICLR 2025</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=wUtCieKuQU" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/Unlearning-with-Control" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2025towards')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2025towards">@inproceedings{wang2025towards,
+  title={Towards Effective Evaluations and Comparison for LLM Unlearning Methods},
+  author={Qizhou Wang and Bo Han and Puning Yang and Jianing Zhu and Tongliang Liu and Masashi Sugiyama},
+  booktitle={International Conference on Learning Representations},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">A Sober Look at the Robustness of CLIPs to Spurious Features</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, Y. Lin, Y. Chen, L. Schmidt, B. Han, and T. Zhang</div>
+        <div class="pub-venue">NeurIPS 2024</div>
+        <div class="pub-links"><a href="https://arxiv.org/abs/2403.11497" target="_blank">PDF</a> <a href="https://counteranimal.github.io/" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2024clip')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2024clip">@inproceedings{wang2024clip,
+  title={A Sober Look at the Robustness of CLIPs to Spurious Features},
+  author={Qizhou Wang and Yong Lin and Yongqiang Chen and Ludwig Schmidt and Bo Han and Tong Zhang},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2024}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Learning to Augment Distributions for Out-of-distribution Detection</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, Z. Fang, Y. Zhang, F. Liu, Y. Li, and B. Han</div>
+        <div class="pub-venue">NeurIPS 2023</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=OtU6VvXJue" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/DAL" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2023learning')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2023learning">@inproceedings{wang2023learning,
+  title={Learning to Augment Distributions for Out-of-distribution Detection},
+  author={Qizhou Wang and Zhen Fang and Yonggang Zhang and Feng Liu and Yixuan Li and Bo Han},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Out-of-distribution Detection with Unreliable Out-of-distribution Sources</div>
+        <div class="pub-authors">H. Zheng, <strong>Q. Wang</strong>, Z. Fang, X. Xia, F. Liu, T. Liu, and B. Han</div>
+        <div class="pub-venue">NeurIPS 2023</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=87Qnneer8l" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/ATOL" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_zheng2023unreliable')">BibTeX</a></div>
+        <div class="bib-block" id="bib_zheng2023unreliable">@inproceedings{zheng2023unreliable,
+  title={Out-of-distribution Detection with Unreliable Out-of-distribution Sources},
+  author={Haotian Zheng and Qizhou Wang and Zhen Fang and Xiaobo Xia and Feng Liu and Tongliang Liu and Bo Han},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Out-of-distribution Detection with Implicit Outlier Transformation</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, J. Ye, F. Liu, Q. Dai, M. Kalander, T. Liu, J. Hao, and B. Han</div>
+        <div class="pub-venue">ICLR 2023</div>
+        <div class="pub-links"><a href="https://arxiv.org/pdf/2303.05033.pdf" target="_blank">PDF</a> <a href="https://github.com/QizhouWang/DOE" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2023doe')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2023doe">@inproceedings{wang2023doe,
+  title={Out-of-distribution Detection with Implicit Outlier Transformation},
+  author={Qizhou Wang and Junjie Ye and Feng Liu and Quanyu Dai and Marcus Kalander and Tongliang Liu and Jianye Hao and Bo Han},
+  booktitle={International Conference on Learning Representations},
+  year={2023}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Watermarking for Out-of-distribution Detection</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, F. Liu, Y. Zhang, J. Zhang, C. Gong, T. Liu, and B. Han</div>
+        <div class="pub-venue">NeurIPS 2022</div>
+        <div class="pub-links"><a href="https://arxiv.org/pdf/2210.15198.pdf" target="_blank">PDF</a> <a href="https://github.com/QizhouWang/watermarking" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2022watermark')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2022watermark">@inproceedings{wang2022watermark,
+  title={Watermarking for Out-of-distribution Detection},
+  author={Qizhou Wang and Feng Liu and Yonggang Zhang and Jing Zhang and Chen Gong and Tongliang Liu and Bo Han},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2022}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Probabilistic Margins for Instance Reweighting in Adversarial Training</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, F. Liu, B. Han, T. Liu, C. Gong, G. Niu, M. Zhou, and M. Sugiyama</div>
+        <div class="pub-venue">NeurIPS 2021</div>
+        <div class="pub-links"><a href="https://arxiv.org/pdf/2106.07904.pdf" target="_blank">PDF</a> <a href="https://github.com/QizhouWang/MAIL" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2021mail')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2021mail">@inproceedings{wang2021mail,
+  title={Probabilistic Margins for Instance Reweighting in Adversarial Training},
+  author={Qizhou Wang and Feng Liu and Bo Han and Tongliang Liu and Chen Gong and Gang Niu and Mingyuan Zhou and Masashi Sugiyama},
+  booktitle={NeurIPS},
+  year={2021}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Tackling Instance-dependent Label Noise via a Universal Probabilistic Model</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, B. Han, T. Liu, G. Niu, J. Yang, and C. Gong</div>
+        <div class="pub-venue">AAAI 2021</div>
+        <div class="pub-links"><a href="https://arxiv.org/pdf/2101.05467.pdf" target="_blank">PDF</a> <a href="https://github.com/QizhouWang/instance-dependent-label-noise" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2021tackling')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2021tackling">@inproceedings{wang2021tackling_instance,
+  title={Tackling Instance-Dependent Label Noise via a Universal Probabilistic Model},
+  author={Qizhou Wang and Bo Han and Tongliang Liu and Gang Niu and Jian Yang and Chen Gong},
+  booktitle={AAAI},
+  year={2021}
+}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Journal -->
+  <div class="pub-category" id="journal">
+    <div class="pub-category-title">Journal</div>
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-title">Forgetting: A New Mechanism Towards Better Large Language Model Fine-tuning</div>
+        <div class="pub-authors">A. Taheri, A. Taban, <strong>Q. Wang</strong>, S. Ye, A. Mirzaei, T. Liu, and B. Han</div>
+        <div class="pub-venue">TMLR, 2026</div>
+        <div class="pub-links"><a href="https://openreview.net/pdf?id=s36smEoUoX" target="_blank">PDF</a> <a href="https://github.com/AliTaheri2002/Forgetting-A-New-Mechanism-Towards-Better-Large-Language-Model-Fine-tuning" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_taheri2026forgetting')">BibTeX</a></div>
+        <div class="bib-block" id="bib_taheri2026forgetting">@article{taheri2026forgetting,
+  title={Forgetting: A New Mechanism Towards Better Large Language Model Fine-tuning},
+  author={Ali Taheri and Alireza Taban and Qizhou Wang and Shanshan Ye and Abdolreza Mirzaei and Tongliang Liu and Bo Han},
+  journal={Transactions on Machine Learning Research},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">On the Two Facets to Conquer Wild Out-of-distribution Detection</div>
+        <div class="pub-authors">Z. Hu, <strong>Q. Wang</strong>, X. Liu, L. Lan, and B. Han</div>
+        <div class="pub-venue">TPAMI, 2026</div>
+        <div class="pub-links"><a href="" target="_blank">PDF</a> <a href="" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_hu2026on')">BibTeX</a></div>
+        <div class="bib-block" id="bib_hu2026on">@article{hu2026on,
+  title={On the Two Facets to Conquer Wild Out-of-distribution Detection},
+  author={Zhaohui Hu and Qizhou Wang and Xinwang Liu and Long Lan and Bo Han},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2026}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">W-DOE: Wasserstein Distribution-agnostic Outlier Exposure</div>
+        <div class="pub-authors"><strong>Q. Wang</strong>, B. Han, Y. Liu, C. Gong, T. Liu, and J. Liu</div>
+        <div class="pub-venue">TPAMI, 2025</div>
+        <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/10844561" target="_blank">PDF</a> <a href="https://github.com/tmlr-group/W-DOE" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_wang2025wdoe')">BibTeX</a></div>
+        <div class="bib-block" id="bib_wang2025wdoe">@article{wang2025wdoe,
+  title={W-DOE: Wasserstein Distribution-agnostic Outlier Exposure},
+  author={Qizhou Wang and Bo Han and Yang Liu and Chen Gong and Tongliang Liu and Jiming Liu},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">RML++: Regroup Median Loss for Combating Label Noise</div>
+        <div class="pub-authors">F. Li, K. Li, <strong>Q. Wang</strong>, B. Han, J. Tian, and J. Zhou</div>
+        <div class="pub-venue">IJCV, 2025</div>
+        <div class="pub-links"><a href="https://scholars.hkbu.edu.hk/en/publications/rml-regroup-median-loss-for-combating-label-noise/" target="_blank">PDF</a> <a href="https://github.com/Feng-peng-Li/Regroup-Loss-Median-to-Combat-Label-Noise" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_li2025rmlpp')">BibTeX</a></div>
+        <div class="bib-block" id="bib_li2025rmlpp">@article{li2025rmlpp,
+  title={RML++: Regroup Median Loss for Combating Label Noise},
+  author={Li, Fengpeng and Li, Kemou and Wang, Qizhou and Han, Bo and Tian, Jinyu and Zhou, Jiantao},
+  journal={International Journal of Computer Vision},
+  year={2025}
+}</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Instance-dependent Positive and Unlabeled Learning with Labeling Bias Estimation</div>
+        <div class="pub-authors">C. Gong, <strong>Q. Wang</strong>, T. Liu, B. Han, J. You, and D. Tao</div>
+        <div class="pub-venue">TPAMI, 2021</div>
+        <div class="pub-links"><a href="https://ieeexplore.ieee.org/document/9361303/" target="_blank">PDF</a> <a href="" target="_blank">Code</a> <a class="bib-toggle" onclick="toggleBib('bib_gong2021instance')">BibTeX</a></div>
+        <div class="bib-block" id="bib_gong2021instance">@article{gong2021instance,
+  title={Instance-dependent positive and unlabeled learning with labeling bias estimation},
+  author={Gong, Chen and Wang, Qizhou and Liu, Tongliang and Han, Bo and You, Jane and Yang, Jian and Tao, Dacheng},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={44},
+  number={8},
+  pages={4163--4177},
+  year={2021}
+}</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── AWARDS ── -->
+<section id="awards">
+  <div class="section-title">Honors &amp; Awards</div>
+  <div class="awards-grid">
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">J2C Certification</div><div class="award-year">TMLR 2026</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">ICLR Notable Reviewer</div><div class="award-year">ICLR 2025</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Excellent Teaching Assistant Performance Award</div><div class="award-year">HKBU 2024</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">ICLR Outstanding Reviewer</div><div class="award-year">ICLR 2024</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">RPg Performance Award</div><div class="award-year">HKBU 2024</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Teaching Assistant Performance Award</div><div class="award-year">HKBU 2023</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Top Reviewer</div><div class="award-year">NeurIPS 2023</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">RPg Performance Award</div><div class="award-year">HKBU 2023</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">PG Day Best Presentation Award</div><div class="award-year">HKBU 2023</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Spotlight Paper Award</div><div class="award-year">NeurIPS 2022</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Outstanding Reviewer</div><div class="award-year">ICML 2022</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">RPg Performance Award</div><div class="award-year">HKBU 2022</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Outstanding Reviewer</div><div class="award-year">ICML 2021</div></div></div>
+    <div class="award-item"><div class="award-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><div><div class="award-text">Outstanding Undergraduate Thesis</div><div class="award-year">NJUST 2021</div></div></div>
+  </div>
+</section>
+
+<!-- ── SERVICE & TEACHING ── -->
+<section id="service">
+  <div class="section-title">Academic Service &amp; Teaching</div>
+  <div class="service-grid">
+    <div class="service-box">
+      <h3>Service</h3>
+      <ul>
+        <li>Area Chair: NeurIPS (2026, Position Paper Track)</li>
+        <li>Editorial Board Member: MLJ (2026 - Now)</li>
+        <li>Conference Reviewer / PC Member: ICML, NeurIPS, ICLR, UAI, CVPR</li>
+        <li>Journal Reviewer: TPAMI, IJCV, TNNLS, NN, TMLR</li>
+      </ul>
+    </div>
+    <div class="service-box">
+      <h3>Teaching Assistant</h3>
+      <ul>
+        <li>COMP1016 (G) Mathematical Methods for Business Computing</li>
+        <li>COMP7250 (G) Machine Learning</li>
+        <li>COMP3075 (UG) Introduction to AI and Machine Learning</li>
+        <li>COMP1006 (G) Facets of Computing</li>
+        <li>COMP7870 (G) IT Innovation Management and Entrepreneurship</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRESENTATIONS ── -->
+<section id="presentations">
+  <div class="section-title">Presentations</div>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-year">2026</div>
+      <div class="exp-details">
+        <h3>On the Insights and Strategies for OOD Detection Learning</h3>
+        <p><a href="https://aaai.org/conference/aaai/aaai-26/tutorial-and-lab-forum/" target="_blank">AAAI Tutorial and Lab Forum</a> · <a href="https://github.com/QizhouWang/homepage/blob/main/aaai_tutorial_v2.pdf" target="_blank">Slide</a></p>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-year">2025</div>
+      <div class="exp-details">
+        <h3>LLM Unlearning: Methodologies, Evaluations, and Broader Applications</h3>
+        <p><a href="https://en.sjtu.edu.cn/" target="_blank">Shanghai Jiao Tong University</a> · <a href="https://github.com/QizhouWang/homepage/blob/main/unlearning_sjtu_v2.pdf" target="_blank">Slide</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MENTORSHIP ── -->
+<section id="mentorship">
+  <div class="section-title">Research Mentorship</div>
+  <div class="mentee-list">
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Yue Wang</div>
+        <div class="mentee-detail">UCL UG &rarr; ICML '25, ICLR '26 &rarr;</div>
+      </div>
+      <div class="mentee-dest">UniMelb PhD, 2026</div>
+    </div>
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Ali Taheri</div>
+        <div class="mentee-detail">IUT UG &rarr; TMLR '26 &rarr;</div>
+      </div>
+      <div class="mentee-dest">MPI PhD, 2026</div>
+    </div>
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Alireza Taban</div>
+        <div class="mentee-detail">IUT UG &rarr; TMLR '26 &rarr;</div>
+      </div>
+      <div class="mentee-dest">UWaterloo PhD, 2026</div>
+    </div>
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Junfeng Liao</div>
+        <div class="mentee-detail">SUIBE Master &rarr; ICLR '26 &rarr;</div>
+      </div>
+      <div class="mentee-dest">MBZUAI PhD, 2026</div>
+    </div>
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Puning Yang</div>
+        <div class="mentee-detail">UCAS Master &rarr; ICLR '25, ICML '25 &rarr;</div>
+      </div>
+      <div class="mentee-dest">MBZUAI PhD, 2025</div>
+    </div>
+    <div class="mentee-item">
+      <div>
+        <div class="mentee-name">Haotian Zheng</div>
+        <div class="mentee-detail">XDU UG &rarr; NeurIPS '23 &rarr;</div>
+      </div>
+      <div class="mentee-dest">HKU PhD, 2024</div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  &copy; 2026 Qizhou Wang &middot; Last updated April 2026
+  <div style="text-align:center; max-width:480px; margin:16px auto 0;">
+    <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=WkM2Yuik0WswqRqmH28O4jknpzjL1uh9cfsQF5iAgB4&cl=ffffff&w=480"></script>
+  </div>
+</footer>
+
+<script>
+function toggleBib(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('show');
+}
+</script>
+</body>
+</html>
