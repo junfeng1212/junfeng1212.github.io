@@ -348,6 +348,27 @@
     border-top: 1px solid var(--border);
     margin-top: 24px;
   }
+  .visitor-map {
+    display: flex;
+    justify-content: center;
+    margin: 16px auto 0;
+  }
+  .visitor-map-widget {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #111827 url("https://widgets.amung.us/mapbacks/night.jpg") center/cover no-repeat;
+    cursor: pointer;
+  }
+  .visitor-map-widget img {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    filter: drop-shadow(-1px -1px 0 #fff) drop-shadow(1px 1px 0 #fff);
+  }
 
   /* ── RESPONSIVE — tablet ── */
   @media (max-width: 960px) {
@@ -560,6 +581,43 @@
 
 <footer>
   &copy; 2026 Junfeng Liao &middot; Last updated May 2026
+  <div class="visitor-map" aria-label="Visitor map">
+    <a id="visitor-map-widget" class="visitor-map-widget" href="https://whos.amung.us/stats/d0ed5f69f4/" target="_blank" rel="noopener" aria-label="Visitor map"></a>
+    <script>
+    (function() {
+      var siteKey = "d0ed5f69f4";
+      var siteUrl = "https://junfeng1212.github.io/";
+      var width = 250;
+      var height = 125;
+      var widget = document.getElementById("visitor-map-widget");
+
+      window.WAU_r_m = function(_active, key, _index, points) {
+        if (!widget || key !== siteKey || !Array.isArray(points)) return;
+
+        points.forEach(function(point) {
+          var pin = document.createElement("img");
+          var x = Math.round((Number(point.lon) + 180) * (width / 360)) - 5;
+          var y = Math.round((Number(point.lat) * -1 + 90) * (height / 180)) - 5;
+          pin.src = "https://widgets.amung.us/mappoints/cross-blue.png";
+          pin.alt = "";
+          pin.title = (point.city ? point.city + ", " : "Unknown, ") + point.cc;
+          pin.style.left = x + "px";
+          pin.style.top = y + "px";
+          widget.appendChild(pin);
+        });
+      };
+
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://whos.amung.us/pingjs/?k=" + siteKey
+        + "&t=" + encodeURIComponent(document.title)
+        + "&c=m&x=" + encodeURIComponent(siteUrl)
+        + "&y=" + encodeURIComponent(document.referrer)
+        + "&a=0&d=0&v=27&r=" + Math.ceil(Math.random() * 9999);
+      document.body.appendChild(script);
+    })();
+    </script>
+  </div>
 
 </footer>
 
