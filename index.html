@@ -265,7 +265,11 @@
   .bib-block.show { display: block; }
 
   /* ── AWARDS ── */
-  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-height: 200px; overflow-y: auto; }
+  .awards-grid::-webkit-scrollbar { width: 4px; }
+  .awards-grid::-webkit-scrollbar-track { background: transparent; }
+  .awards-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .awards-grid::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   .award-item {
     display: flex; align-items: center; gap: 12px;
     background: var(--surface);
@@ -437,7 +441,6 @@
     <div class="news-item">
       <span class="news-date">[2026.4]</span>
       <span class="news-text">Got my PhD offer at MBZUAI! Thanks for everyone!</span>
-    </div>
     <div class="news-item">
       <span class="news-date">[2026.1]</span>
       <span class="news-text"> 🎉 My first-author work was accepted by <strong>ICLR 2026</strong>! Heartfelt thanks to Dr. Qizhou Wang, Prof. Zhen Fang, Prof. Ling Chen, and all other co-authors!</span>
@@ -535,6 +538,7 @@
     
   </div>
 </section>
+</div>
 <section id="beyond-research">
   <div class="section-title">Beyond Research</div>
   <div class="bio" style="max-width:700px; margin:0 auto;">
@@ -547,9 +551,7 @@
 
 <footer>
   &copy; 2026 Junfeng Liao &middot; Last updated May 2026
-  <div style="text-align:center; max-width:480px; margin:16px auto 0;">
-    <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=WkM2Yuik0WswqRqmH28O4jknpzjL1uh9cfsQF5iAgB4&cl=ffffff&w=480"></script>
-  </div>
+
 </footer>
 
 <script>
